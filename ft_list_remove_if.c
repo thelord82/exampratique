@@ -56,6 +56,7 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
  	cc->next = dd;
 
  	t_list **begin_list = &aa;
+
  	print_list(begin_list);
  	printf("----------\n");
  	ft_list_remove_if(begin_list, straa, strcmp);
