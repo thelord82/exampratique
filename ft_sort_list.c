@@ -9,28 +9,27 @@ void	ft_swap(t_list *a, t_list *b)
 	a->data = b->data;
 	b->data = tmp;
 }
-
-int	ascending (int a, int b)
+t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
 {
-	return (a <= b);
-}
+	t_list	*new;
 
-t_list	*sort_list(t_list	*lst, int (*cmp)(int, int))
-{
-	t_list *head;
-	head = lst;
-
-	while(lst->next != 0)
+	new = lst;
+	while (lst->next != 0)
 	{
-		if (((*cmp)(lst->data, lst->next->data)) == 0)
+		if ((*cmp)(lst->data, lst->next->data) == 0)
 		{
 			ft_swap(lst, lst->next);
-			lst = head;
+			lst = new;
 		}
 		else
 			lst = lst->next;
 	}
-	return (head);
+	return (new);
+}
+
+int ascending (int a, int b)
+{
+	return (a <= b);
 }
 
 int main()

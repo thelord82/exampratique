@@ -15,7 +15,6 @@ int	ft_list_size(t_list *begin_list)
 
 int main ()
 {
-	t_list *head;
 	t_list *a = malloc(sizeof(t_list));
 	t_list *b = malloc(sizeof(t_list));
 	t_list *c = malloc(sizeof(t_list));
@@ -29,6 +28,5 @@ int main ()
 	c->next = d;
 	d->data = 11;
 	d->next = 0;
-	head = a;
-	printf("Taille de liste : %d\n", ft_list_size(head));
+	printf("Taille de liste : %d\n", ft_list_size(a));
 }

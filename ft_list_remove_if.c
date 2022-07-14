@@ -5,18 +5,18 @@
 
 void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
-	t_list *cur = *begin_list;
-
-	while (cur)
+	t_list *current;
+	current = *begin_list;
+	while (current)
 	{
-		if (cmp(cur->data, data_ref) == 0)
+		if (cmp(data_ref, current->data) == 0)
 		{
-			*begin_list = cur->next;
-			free(cur);
-			cur = *begin_list;
+			*begin_list = current->next;
+			free(current);
+			current = *begin_list;
 		}
 		else
-			cur = cur->next;
+			current = current->next;
 	}
 }
 

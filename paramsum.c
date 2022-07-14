@@ -6,7 +6,7 @@
 /*   By: malord <malord@student.42quebec.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 08:25:39 by malord            #+#    #+#             */
-/*   Updated: 2022/07/12 10:12:50 by malord           ###   ########.fr       */
+/*   Updated: 2022/07/13 15:03:56 by malord           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void ft_putnbr(int argc)
 {
 	int nbr = 0;
 	if (argc >= 10)
-	{
 		ft_putnbr(argc / 10);
-	}
 	nbr = (argc) % 10 + 48;
 	write (1, &nbr, 1);
 }
