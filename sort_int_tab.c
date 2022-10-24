@@ -30,7 +30,7 @@ void sort_int_tab(int *tab, unsigned int size)
 
 int main()
 {
-	int tab[10] = {9, 8, 7, 6, 4, 5, 3, 2, 1, 0};
+	int tab[10] = {9, 8, 7, 6, 4, 4, 3, 2, 1, 0};
 	int i = 0;
 
 	sort_int_tab(tab, 10);

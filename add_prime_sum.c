@@ -6,7 +6,7 @@
 /*   By: malord <malord@student.42quebec.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 07:46:21 by malord            #+#    #+#             */
-/*   Updated: 2022/07/13 09:14:44 by malord           ###   ########.fr       */
+/*   Updated: 2022/08/17 11:49:31 by malord           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void ft_putnbr(int nbr)
 
 int main (int argc, char **argv)
 {
-	
 	int sum = 2;
 	if (argc == 2)
 	{

@@ -6,7 +6,7 @@
 /*   By: malord <malord@student.42quebec.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:34:31 by malord            #+#    #+#             */
-/*   Updated: 2022/07/14 09:23:30 by malord           ###   ########.fr       */
+/*   Updated: 2022/08/05 09:55:35 by malord           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char **ft_split(char *str)
 
 int main()
 {
-	char *str = "phrase        de      quatre			 mots ou    plus    ";
+	char *str = "        phrase        de      quatre			 mots ou    plus    ";
 	char **result = ft_split(str);
 	int i = 0;
 	while(result[i])

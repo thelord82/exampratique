@@ -1,7 +1,9 @@
 #include <stdio.h>
 int max(int *tab, unsigned int len)
 {
-	int max = tab[len - 1];
+    if (len == 0)
+        return (0);
+    int max = tab[len - 1];
 	while (len > 0)
 	{
 		if (tab[len - 1] >= max)
@@ -13,6 +15,6 @@ int max(int *tab, unsigned int len)
 
 int main (void)
 {
-	int tab[7] = {100, 200, 15, 4200, 888, 13, 1100};
-	printf("%d\n", max(tab, 7));
+	int tab[7] = {};
+	printf("%d\n", max(tab, 20));
 }

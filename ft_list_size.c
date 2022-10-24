@@ -13,20 +13,27 @@ int	ft_list_size(t_list *begin_list)
 	return (size);
 }
 
-int main ()
+int main(void)
 {
-	t_list *a = malloc(sizeof(t_list));
-	t_list *b = malloc(sizeof(t_list));
-	t_list *c = malloc(sizeof(t_list));
-	t_list *d = malloc(sizeof(t_list));
+	t_list *a;
+	t_list *b;
+	t_list *c;
+	t_list *d;
 
-	a->data = 3;
+	a = malloc(sizeof(t_list));
+	b = malloc(sizeof(t_list));
+	c = malloc(sizeof(t_list));
+	d = malloc(sizeof(t_list));
+
+	a->data = 4;
 	a->next = b;
-	b->data = 5;
+	b->data = 6;
 	b->next = c;
-	c->data = 7;
+	c->data = 8;
 	c->next = d;
-	d->data = 11;
+	d->data = 4;
 	d->next = 0;
-	printf("Taille de liste : %d\n", ft_list_size(a));
+
+	printf("%d", ft_list_size(a));
+	return (0);
 }

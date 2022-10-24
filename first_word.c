@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paramsum.c                                         :+:      :+:    :+:   */
+/*   first_word.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malord <malord@student.42quebec.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 08:25:39 by malord            #+#    #+#             */
-/*   Updated: 2022/08/16 13:29:16 by malord           ###   ########.fr       */
+/*   Created: 2022/09/01 14:11:33 by malord            #+#    #+#             */
+/*   Updated: 2022/09/01 14:13:52 by malord           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_putnbr(int argc)
-{
-	int nbr = 0;
-	if (argc >= 10)
-		ft_putnbr(argc / 10);
-	nbr = (argc) % 10 + 48;
-	write (1, &nbr, 1);
-}
-
 int main (int argc, char **argv)
 {
-	if (argc < 2 && argv[0] != NULL)
-		write (1, "0\n", 2);
-	else
-		ft_putnbr(argc - 1);
-	return (0);
+	int i = 0;
+
+	if (argc == 2)
+	{
+		while (argv[1][i])
+		{
+			if (argv[1][i] != ' ')
+			{
+				write (1, &argv[1][i], 1);
+				i++;
+			}
+			else
+				break ;
+		}
+	}
+	write (1, "\n", 1);
 }

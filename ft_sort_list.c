@@ -11,20 +11,20 @@ void	ft_swap(t_list *a, t_list *b)
 }
 t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
 {
-	t_list	*new;
+	t_list	*head;
 
-	new = lst;
+	head = lst;
 	while (lst->next != 0)
 	{
 		if ((*cmp)(lst->data, lst->next->data) == 0)
 		{
 			ft_swap(lst, lst->next);
-			lst = new;
+			lst = head;
 		}
 		else
 			lst = lst->next;
 	}
-	return (new);
+	return (head);
 }
 
 int ascending (int a, int b)

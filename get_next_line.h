@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paramsum.c                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malord <malord@student.42quebec.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 08:25:39 by malord            #+#    #+#             */
-/*   Updated: 2022/08/16 13:29:16 by malord           ###   ########.fr       */
+/*   Created: 2022/10/24 08:15:28 by malord            #+#    #+#             */
+/*   Updated: 2022/10/24 08:15:42 by malord           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void ft_putnbr(int argc)
-{
-	int nbr = 0;
-	if (argc >= 10)
-		ft_putnbr(argc / 10);
-	nbr = (argc) % 10 + 48;
-	write (1, &nbr, 1);
-}
+char	*get_next_line(int fd);
 
-int main (int argc, char **argv)
-{
-	if (argc < 2 && argv[0] != NULL)
-		write (1, "0\n", 2);
-	else
-		ft_putnbr(argc - 1);
-	return (0);
-}
+#endif

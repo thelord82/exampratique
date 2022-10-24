@@ -20,17 +20,17 @@ void	int_doubler(void *n)
 int main()
 {
 	t_list *pt_a = malloc(sizeof(t_list));
- 	int	n_a = 0;
+ 	int	n_a = 12;
  	pt_a->data = &n_a;
  	pt_a->next = 0;
 
  	t_list *pt_b = malloc(sizeof(t_list));
- 	int	n_b = 3;
+ 	int	n_b = 42;
  	pt_b->data = &n_b;
  	pt_b->next = 0;
 
  	t_list *pt_c = malloc(sizeof(t_list));
- 	int	n_c = 4;
+ 	int	n_c = 69;
  	pt_c->data = &n_c;
  	pt_c->next = 0;
 

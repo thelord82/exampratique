@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paramsum.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malord <malord@student.42quebec.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 08:25:39 by malord            #+#    #+#             */
-/*   Updated: 2022/08/16 13:29:16 by malord           ###   ########.fr       */
+/*   Created: 2022/08/12 10:01:22 by malord            #+#    #+#             */
+/*   Updated: 2022/08/12 10:02:43 by malord           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
 
-void ft_putnbr(int argc)
+int	ft_atoi(char *str)
 {
-	int nbr = 0;
-	if (argc >= 10)
-		ft_putnbr(argc / 10);
-	nbr = (argc) % 10 + 48;
-	write (1, &nbr, 1);
+	int result = 0;
+	int sign = 1;
+
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+        	str++;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + *str - '0';
+		str++;
+	}
+	return (sign * result);
 }
-
-int main (int argc, char **argv)
+int main (void)
 {
-	if (argc < 2 && argv[0] != NULL)
-		write (1, "0\n", 2);
-	else
-		ft_putnbr(argc - 1);
-	return (0);
+	printf("%d\n", ft_atoi("   255"));
 }
