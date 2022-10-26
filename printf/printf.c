@@ -6,7 +6,7 @@
 /*   By: malord <malord@student.42quebec.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 07:50:59 by malord            #+#    #+#             */
-/*   Updated: 2022/10/26 12:23:29 by malord           ###   ########.fr       */
+/*   Updated: 2022/10/25 15:24:08 by malord           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ long ft_putnbr(int nbr)
 	return (len);
 }
 
-int	ft_printhexa(unsigned int n)
+int	ft_printhexa(unsigned int n, char c)
 {
 	char			*hexbase;
 	int				len;
@@ -71,7 +71,7 @@ int	ft_printhexa(unsigned int n)
 	len = ft_numlen(n, 16);
 	hexbase = "0123456789abcdef";
 	if (n >= 16)
-		ft_printhexa(n / 16);
+		ft_printhexa(n / 16, c);
 	write (1, &hexbase[n % 16], 1);
 	return (len);
 }
@@ -100,7 +100,7 @@ int	ft_checkchar(char c, va_list argu)
 	if (c == 'd')
 		len = ft_putnbr(va_arg(argu, int));
 	if (c == 'x')
-		len = ft_printhexa(va_arg(argu, unsigned int));
+		len = ft_printhexa(va_arg(argu, unsigned int), c);
 	return (len);
 }
 
