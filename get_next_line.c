@@ -6,20 +6,22 @@
 /*   By: malord <malord@student.42quebec.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:21:55 by malord            #+#    #+#             */
-/*   Updated: 2022/10/27 14:41:59 by malord           ###   ########.fr       */
+/*   Updated: 2022/10/27 15:42:54 by malord           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char *get_next_line(int fd)
+/*char *get_next_line(int fd)
 {
-	char *string = malloc(10000), *buffer = string;
+	#undef BUFFER_SIZE
+	#define BUFFER_SIZE 1
+	char *string = malloc(1000000), *buffer = string;
 	while (read(fd, buffer, BUFFER_SIZE) > 0 && *buffer++ != '\n');
 	return (buffer > string) ? (*buffer = 0, string) : (free(string), NULL);
-}
+}*/
 
-/*int ft_strlen(char *str)
+int ft_strlen(char *str)
 {
 	int i = 0;
 	while (str[i])
@@ -47,7 +49,7 @@ char *get_next_line(int fd)
 		free (string);
 		return (NULL);	
 	}
-}*/
+}
 
 int main(void)
 {

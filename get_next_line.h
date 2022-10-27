@@ -6,7 +6,7 @@
 /*   By: malord <malord@student.42quebec.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 08:15:28 by malord            #+#    #+#             */
-/*   Updated: 2022/10/27 14:42:44 by malord           ###   ########.fr       */
+/*   Updated: 2022/10/27 15:44:01 by malord           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
-# define BUFFER_SIZE 1
-
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+# ifdef BUFFER_SIZE
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 char	*get_next_line(int fd);
 
 #endif
