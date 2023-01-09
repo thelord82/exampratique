@@ -6,7 +6,7 @@
 /*   By: malord <malord@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:04:38 by malord            #+#    #+#             */
-/*   Updated: 2023/01/09 15:10:01 by malord           ###   ########.fr       */
+/*   Updated: 2023/01/09 15:43:18 by malord           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	builtin_cd(char **argv)
 		write(2, "\n", 1);
 		return (1);
 	}
-	//else
+	//else    // Vérifie avc getcwd si le cd a bel et bien marché
 	//{
 	//	printf("on rentre\n");
 	//	if (getcwd(cwd, sizeof(cwd)) != NULL)
