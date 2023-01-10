@@ -1,22 +1,56 @@
-#include <sys/wait.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   microshell3.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malord <malord@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/10 10:47:46 by malord            #+#    #+#             */
+/*   Updated: 2023/01/10 16:02:41 by malord           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+#include <string.h>
 
-int	g_fd;
+int	global_fd;
 
-static int	print(char *string)
+static int	ft_strlen(char *str)
 {
-	int	length = 0;
+	int len = 0;
 
-	while (string[length])
-		length++;
-	write(2, string, length);
-	return (1);
+	while (str[len])
+		len++;
+	return (len);
 }
 
-static int	executor(char **argv, int i, char **env)
+static int	builtin_cd(char **argv)
+{
+	char directory[1000000];
+	if (argv[2] && !strcmp(argv[2], "|") && !strcmp(argv[2], ";"))
+	{
+		write(2, "error: cd: bad arguments\n", 25);
+		return (1);
+	}
+	if (chdir(argv[1]) == -1)
+	{
+		write(2, "error: cd: cannot change directory to ", 38);
+		write(2, argv[1], ft_strlen(argv[1]));
+		return (1);
+	}
+	else
+	{
+		if (getcwd(directory, sizeof(directory)))
+			printf("%s\n", directory);
+	}
+	return (0);
+}
+
+static int	exec_cmd(char **argv, char **envp, int i)
 {
 	int	status;
 	int	fd[2];
@@ -28,56 +62,54 @@ static int	executor(char **argv, int i, char **env)
 	if (argv[i] == *argv)
 		return (0);
 	if (pipe(fd) == -1)
-		return (print("error: fatal\n"));
+	{
+		write(2, "error: fatal\n", 13);
+		return (1);
+	}
 	pid = fork();
 	if (pid == -1)
-		return (print("error: fatal\n"));
+	{
+		write(2, "error: fatal\n", 13);
+		return (1);
+	}
 	else if (pid == 0)
 	{
-		close(fd[0]);
-		dup2(g_fd, 0);
+		dup2(global_fd, 0);
 		argv[i] = 0;
 		if (next)
 			dup2(fd[1], 1);
-		if (g_fd != 0)
-			close(g_fd);
-		close(fd[1]);
-		if (execve(*argv, argv, env) == -1)
+		if (global_fd != 0)
+			close(global_fd);
+		if (execve(*argv, argv, envp) == -1)
 		{
-			print("error: cannot execute ");
-			print(*argv);
-			print("\n");
-			exit(0);
+			write(2, "error: cannot execute ", 22);
+			write(2, *argv, ft_strlen(*argv));
+			write(2, "\n", 1);
+			return (1);
 		}
 	}
 	else
 	{
 		close(fd[1]);
 		waitpid(pid, &status, 0);
-		if (g_fd != 0)
-			close(g_fd);
+		if (global_fd != 0)
+			close(global_fd);
 		if (next)
-			g_fd = dup(fd[0]);
-		close(fd[0]);
+			global_fd = dup(fd[0]);
+		close (fd[0]);
 	}
 	return (0);
 }
 
-static int	builtin_cd(char **argv)
+int	main(int argc, char **argv, char **envp)
 {
-	if (argv[2] && strcmp(argv[2], "|") != 0 && strcmp(argv[2], ";") != 0)
-		return (print("error: cd: bad arguments\n"));
-	if (chdir(argv[1]) == -1)
-		return (print("error: cannot execute cd\n"));
-	return (0);
-}
-
-int	main(int argc, char **argv, char **env)
-{
-	int	i = 1;
+	int i = 1;
 
 	if (argc == 1)
-		return (0);
+	{
+		write(2, "error: bad arguments\n", 21);
+		return (1);
+	}
 	argv[argc] = 0;
 	while (argv[i - 1] && argv[i])
 	{
@@ -88,7 +120,8 @@ int	main(int argc, char **argv, char **env)
 		if (!strcmp(*argv, "cd"))
 			builtin_cd(argv);
 		else
-			executor(argv, i, env);
+			exec_cmd(argv, envp, i);
 		i++;
 	}
+	return (0);
 }
