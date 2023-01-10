@@ -6,7 +6,7 @@
 /*   By: malord <malord@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:04:38 by malord            #+#    #+#             */
-/*   Updated: 2023/01/09 15:43:18 by malord           ###   ########.fr       */
+/*   Updated: 2023/01/10 09:31:04 by malord           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static int	executor(char **argv, int i, char **env)
 			write(2, "error: cannot execute ", 22);
 			write(2, *argv, ft_strlen(*argv));
 			write(2, "\n", 1);
+			printf("allo");
 			exit(1);
 		}
 	}
